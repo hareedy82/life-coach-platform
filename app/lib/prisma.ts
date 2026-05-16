@@ -1,9 +1,8 @@
 import { PrismaClient } from "@/app/generated/prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 function createPrismaClient() {
-  const dbUrl = process.env.DATABASE_URL ?? "file:///root/projects/life-coach-platform/dev.db";
-  const adapter = new PrismaLibSql({ url: dbUrl });
+  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
   return new PrismaClient({ adapter });
 }
 

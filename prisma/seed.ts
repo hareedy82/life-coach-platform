@@ -1,8 +1,9 @@
 import { PrismaClient } from "../app/generated/prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
+import "dotenv/config";
 
-const adapter = new PrismaLibSql({ url: "file:///root/projects/life-coach-platform/dev.db" });
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 const COACHES = [
